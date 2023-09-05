@@ -1,0 +1,54 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# qlm
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/qlm)](https://CRAN.R-project.org/package=qlm)
+<!-- badges: end -->
+
+qlm is a package with a single function to create an SQL query to generate
+predictions from a linear model.
+
+## Installation
+
+Install the development version of qlm:
+
+``` r
+devtools::install_github("assuncaolfi/qlm")
+```
+
+## Example
+
+Fit a model:
+
+```{r model}
+library(qlm)
+data(iris)
+
+iris <- janitor::clean_names(iris)
+model <- lm(sepal_length ~ sepal_width + petal_length + species, iris)
+```
+
+Make a predictive query:
+
+```{r query}
+query <- qlm(model)
+cat(query)
+```
+
+Interactions and transformations are not supported and should be previously
+computed in the query that results in the model data.
