@@ -2,16 +2,18 @@
 % Please edit documentation in R/qlm.R
 \name{qlm}
 \alias{qlm}
-\title{Add together two numbers}
+\title{Create a SQL query to compute predictions from a GLM.}
 \usage{
-qlm(model)
+qlm(model, inverse_link = "{x}")
 }
 \arguments{
-\item{model}{A lm model fit.}
+\item{model}{GLM model fit.}
+
+\item{inverse_link}{Inverse link function string, with parameter "{x}".}
 }
 \value{
-An SQL query string.
+SQL query string.
 }
 \description{
-Add together two numbers
+Create a SQL query to compute predictions from a GLM.
 }
