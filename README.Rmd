@@ -20,8 +20,8 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/qlm)](https://CRAN.R-project.org/package=qlm)
 <!-- badges: end -->
 
-qlm is a package with a single function to create an SQL query to generate
-predictions from a linear model.
+qlm is a package to create SQL queries to compute predictions from linear
+models.
 
 ## Installation
 
@@ -50,5 +50,5 @@ query <- qlm(model)
 cat(query)
 ```
 
-Interactions and transformations are not supported and should be previously
-computed in the query that results in the model data.
+Formula interactions and transformations are not supported and should be
+precomputed in the data query.
