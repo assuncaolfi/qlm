@@ -11,8 +11,8 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 status](https://www.r-pkg.org/badges/version/qlm)](https://CRAN.R-project.org/package=qlm)
 <!-- badges: end -->
 
-qlm is a package with a single function to create an SQL query to
-generate predictions from a linear model.
+qlm is a package to create SQL queries to compute predictions from
+linear models.
 
 ## Installation
 
@@ -39,7 +39,6 @@ Make a predictive query:
 ``` r
 query <- qlm(model)
 cat(query)
-#> 
 #> WITH effects AS (
 #>   SELECT 
 #>       1 * 2.3904 AS intercept,
@@ -59,5 +58,5 @@ cat(query)
 #> FROM effects
 ```
 
-Interactions and transformations are not supported and should be
-previously computed in the query that results in the model data.
+Formula interactions and transformations are not supported and should be
+precomputed in the data query.

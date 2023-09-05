@@ -24,8 +24,7 @@ qlm <- function(model) {
   jinjar::render(TEMPLATE, data = tidy, table_name = table_name)
 }
 
-TEMPLATE <- "
-WITH effects AS (
+TEMPLATE <- "WITH effects AS (
   SELECT {% for row in data %}
       {% if row.dummy -%}CAST({% endif %}{{row.old_name}}{% if row.dummy %} = '{{row.level}}' AS INT){% endif %} * {{row.estimate}} AS {{row.new_name}}{% if not row.last -%},{% endif -%}  
     {% endfor %}
