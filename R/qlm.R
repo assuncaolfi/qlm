@@ -1,7 +1,7 @@
-#' Add together two numbers
+#' Create an SQL query to compute predictions from a linear model.
 #' 
-#' @param model A lm model fit.
-#' @returns An SQL query string.
+#' @param model lm model fit.
+#' @returns SQL query string.
 #' @export
 qlm <- function(model) {
   form <- stats::formula(model)
