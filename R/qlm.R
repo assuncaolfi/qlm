@@ -32,20 +32,10 @@ qlm <- function(model, inverse_link = "{x}", form = NULL) {
 
 collapse <- function(x) paste(x, collapse = "|")
 
-TEMPLATE <- "WITH 
-effects AS (
-  SELECT {% for row in data %}
-      {% if row.dummy -%}CAST({% endif %}{{row.old_name}}{% if row.dummy %} = '{{row.level}}' AS INT){% endif %} * {{row.estimate}} AS {{row.new_name}}{% if not row.last -%},{% endif -%}  
-    {% endfor %}
-  FROM {{table_name}}
-),
-linear AS (
-  SELECT {% for row in data %}
-      {{row.new_name}}{% if not row.last %} +{% endif -%}
-    {% endfor %}
-    AS prediction
-  FROM effects
-)
-SELECT {{inverse_link}} AS prediction
-FROM linear
+TEMPLATE <- "
+SELECT {% for row in data %}
+    {% if row.dummy -%}CAST({% endif %}{{row.old_name}}{% if row.dummy %} = '{{row.level}}' AS INT){% endif %} * {{row.estimate}}{% if not row.last -%} +{% endif -%}  
+  {% endfor %} AS linear,
+  {{inverse_link}} AS prediction
+FROM {{table_name}}
 "
