@@ -4,8 +4,8 @@
 #' @param inverse_link Inverse link function string, with parameter "{x}".
 #' @returns SQL query string.
 #' @export
-qlm <- function(model, inverse_link = "{x}") {
-  form <- stats::formula(model)
+qlm <- function(model, inverse_link = "{x}", form = NULL) {
+  if (is.null(form)) form <- stats::formula(model)
   labs <- labels(stats::terms(form))
   tidy <- broom::tidy(model)
   tidy$old_name <- stringr::str_extract(tidy$term, collapse(labs))
