@@ -34,8 +34,8 @@ collapse <- function(x) paste(x, collapse = "|")
 
 TEMPLATE <- "
 SELECT {% for row in data %}
-    {% if row.dummy -%}CAST({% endif %}{{row.old_name}}{% if row.dummy %} = '{{row.level}}' AS INT){% endif %} * {{row.estimate}}{% if not row.last -%} +{% endif -%}  
-  {% endfor %} AS linear,
+    {% if row.dummy -%}CAST({% endif %}{{row.old_name}}{% if row.dummy %} = '{{row.level}}' AS INT){% endif %} * {{row.estimate}} {% if not row.last -%}+{% endif -%}  
+  {% endfor -%} AS linear,
   {{inverse_link}} AS prediction
 FROM {{table_name}}
 "
